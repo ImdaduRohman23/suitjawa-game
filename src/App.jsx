@@ -5,6 +5,8 @@ function App() {
   const [computer, setComputer] = useState('orang');
   const [player, setPlayer] = useState('orang');
   const [result, setResult] = useState('');
+  const [pointComputer, setPointComputer] = useState(0);
+  const [pointPlayer, setPointPlayer] = useState(0);
 
   const handleComputer = () => {
     const acak = Math.random();
@@ -29,7 +31,6 @@ function App() {
 
   const handleResult = () => {
     let hasil;
-    console.log(player, computer)
     if(computer === player) hasil = 'seri'
     else if(player === 'orang') hasil = (computer === 'semut' ? 'menang' : 'kalah')
     else if(player === 'gajah') hasil = (computer === 'orang' ? 'menang' : 'kalah')
@@ -37,18 +38,30 @@ function App() {
     setResult(hasil)
   }
 
+  const handlePoint = () => {
+    console.log(result)
+    let resComp = pointComputer;
+    resComp++
+    let resPlayer= pointPlayer;
+    resPlayer++
+    if(result === 'kalah') {
+      setPointComputer(resComp)
+    }
+    if(result === 'menang') {
+      setPointPlayer(resPlayer)
+    }
+    // let hasil = pointComputer;
+    // hasil++
+    // setPointComputer(pointComputer++)
+  }
+
   useEffect(() => {
-    handleResult()
+    handleResult();
   }, [player, computer])
 
-
-  // let hasil;
-  //   if(computer === player) hasil = 'seri';
-  //   if(player === 'orang') hasil = (computer === 'semut' ? 'menang' : 'kalah');
-  //   if(player === 'gajah') hasil = (computer === 'orang' ? 'menang' : 'kalah');
-  //   if(player === 'semut') hasil = (computer === 'gajah' ? 'menang' : 'kalah');
-  //   setResult(hasil)
-
+  useEffect(() => {
+    handlePoint();
+  }, [result])
   
   return (
     <div className="App">
@@ -67,6 +80,9 @@ function App() {
         handleComputer(); 
         handleSemut();
         }}>Semut</button>
+
+        <h4>{pointComputer}</h4> || <h4>{pointPlayer}</h4>
+        {/* <button onClick={handlePoint} >kklkkl</button> */}
     </div>
   );
 }
