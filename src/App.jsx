@@ -127,7 +127,7 @@ function App() {
             </div>
             <div className="result__pemenang">
               <h3>{pemenang}</h3>
-              <p>Dapatkan 5 point untuk memenangkan permainan ini</p>
+              <p>Dapatkan 5 point untuk memenangkan permainan!</p>
             </div>
           </div>
           <div className="players vs" >
@@ -153,7 +153,7 @@ function App() {
             </div>
             <h4>KAMU</h4>
           </div>
-          <button onClick={handleReset}>reset</button>
+          {/* <button onClick={handleReset}>reset</button> */}
         </div>
 
 
