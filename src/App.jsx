@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import orang from './asets/orang.png';
 import gajah from './asets/gajah.png';
 import semut from './asets/semut.png';
+import { Button } from 'react-bootstrap';
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   const [result, setResult] = useState('');
   const [pointComputer, setPointComputer] = useState(0);
   const [pointPlayer, setPointPlayer] = useState(0);
-  const [src, setSrc] = useState(orang);
+  const [srcComp, setSrcComp] = useState(orang);
+  const [srcPlayer, setSrcPlayer] = useState(orang);
   const [keterangan, setKeterangan] = useState('');
   const [pemenang, setPemenang] = useState('SIAP MENANG?');
 
@@ -20,29 +22,32 @@ function App() {
     let pilih;
     if(acak < 0.34) {
       pilih = 'gajah';
-      setSrc(gajah)
+      setSrcComp(gajah)
     };
     if(acak >= 0.34 && acak < 0.67) {
       pilih = 'orang';
-      setSrc(orang)
+      setSrcComp(orang)
     };
     if(acak >= 0.67) {
       pilih = 'semut';
-      setSrc(semut)
+      setSrcComp(semut)
     };
     setComputer(pilih)
   }
 
   const handleOrang = () => {
-    setPlayer('orang')
+    setPlayer('orang');
+    setSrcPlayer(orang);
   }
 
   const handleGajah = () => {
-    setPlayer('gajah')
+    setPlayer('gajah');
+    setSrcPlayer(gajah);
   }
 
   const handleSemut = () => {
-    setPlayer('semut')
+    setPlayer('semut');
+    setSrcPlayer(semut);
   }
 
   const handleResult = () => {
@@ -55,21 +60,20 @@ function App() {
   }
 
   const handlePoint = () => {
-    console.log(result)
     let resComp = pointComputer;
     resComp++
     let resPlayer= pointPlayer;
     resPlayer++
     if(result === 'kalah') {
       setPointComputer(resComp);
-      setKeterangan('KALAH! 1 POIN UNTUK LAWAN');
+      setKeterangan('KALAH! POIN UNTUK LAWAN');
     }
     if(result === 'menang') {
       setPointPlayer(resPlayer);
-      setKeterangan('MENANG! 1 POIN UNTUK KAMU');
+      setKeterangan('MENANG! POIN UNTUK KAMU');
     }
     if(result === 'seri') {
-      setKeterangan('SERI!');
+      setKeterangan('SERI! POIN TETAP');
     }
   }
 
@@ -78,7 +82,7 @@ function App() {
       setPemenang('ANDA MENANG');
     }
     if(pointComputer === 5) {
-      setPemenang('ANDA KALAH')
+      setPemenang('ANDA KALAH');
     }
     if(pointComputer === pointPlayer && pointComputer >= 5 && pointPlayer >= 5) {
       setPemenang('SERI')
@@ -104,79 +108,69 @@ function App() {
   }, [pointComputer, pointPlayer])
   
   return (
-    <div className="app">
-        <h1>Suit Jawa</h1>
-        <div className="papanBermain">
-          <div className="computer vs">
-            <h3>COMPUTER</h3>
-            <img src={src} alt="" />
-          </div>
-          <div className="result">
-            <div className="result__hasil">
-              <h5>{keterangan}</h5>
+      <div className="app">
+        <h1>SUIT JAWA</h1>
+        <div className="content">
+          <div className="content__vs">
+            <h2>VS</h2>
+            <div className="tandings">
+              <div className="tanding">
+                <h4>KAMU</h4>
+                <img src={srcPlayer} alt="" />
+              </div>
+              <div className="tanding">
+                <h4>COMPUTER</h4>
+                <img src={srcComp} alt="" />
+              </div>
             </div>
+            <div className="result__hasil">
+              <h4>{keterangan}</h4>
+            </div>
+          </div>
+
+          <div className="result">
+            <h4>POINT</h4>
             <div className="result__skor">
               <div className="skor__player">
-                <h5>POINT KAMU</h5>
+                <h4>KAMU</h4>
                 <h4>{pointPlayer}</h4>
               </div>
               <div className="skor__computer">
-                <h5>POINT COMPUTER</h5>
+                <h4>COMPUTER</h4>
                 <h4>{pointComputer}</h4>
               </div>
             </div>
             <div className="result__pemenang">
-              <h3>{pemenang}</h3>
               <p>Dapatkan 5 point untuk memenangkan permainan!</p>
             </div>
           </div>
-          <div className="players vs" >
+          <div className="pilihPlayer" >
+            
             <div className="players__list">
-            <div className="player" onClick={() => {
-              handleComputer(); 
-              handleOrang();
-              }}>
-                <img src={orang} alt="" />
-              </div>
               <div className="player" onClick={() => {
-              handleComputer(); 
-              handleGajah();
-              }}>
-                <img src={gajah} alt="" />
-              </div>
-              <div className="player" onClick={() => {
-              handleComputer(); 
-              handleSemut();
-              }}>
-                <img src={semut} alt="" />
-              </div>
+                handleComputer(); 
+                handleOrang();
+                }}>
+                  <img src={orang} alt="" />
+                </div>
+                <div className="player" onClick={() => {
+                handleComputer(); 
+                handleGajah();
+                }}>
+                  <img src={gajah} alt="" />
+                </div>
+                <div className="player" onClick={() => {
+                handleComputer(); 
+                handleSemut();
+                }}>
+                  <img src={semut} alt="" />
+                </div>
             </div>
-            <h4>KAMU</h4>
+            <h4>PILIH!</h4>
           </div>
-          {/* <button onClick={handleReset}>reset</button> */}
+          <Button className='button__reset' variant='danger' onClick={handleReset}>Reset Poin</Button>
         </div>
-
-
-
-        {/* <button onClick={handlePoint} >kklkkl</button> */}
-      {/* <Container>
-        <Row className="baris justify-content-md-center">
-          <Col className='kolom' lg='8'>
-            <h1 className='text-center'> SUIT JAWA</h1>
-            <Container>
-              <Row className="justify-content-md-center">
-                <Col lg='8'>
-                  <h3>Computer</h3>
-                  <h3>hasil</h3>
-                  <h3>Player</h3>
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-      </Container> */}
-
-    </div>
+      </div>
   );
 }
 

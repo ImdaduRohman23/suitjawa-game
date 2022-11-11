@@ -3,11 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 50px;
   background: url(https://www.toptal.com/designers/subtlepatterns/uploads/gaming-pattern.png);
   color: white;
+  text-align: center;
 
+}
+
+h1 {
+  color: #353c3f;
 }
 
 /* .app-container {
@@ -22,10 +27,14 @@
 } */
 
 h2 {
-  background-color: blueviolet;
+  background-color: #fd3c3c;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.papanBermain {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,20 +43,66 @@ h2 {
   margin-top: 15px;
   border-radius: 10px;
   padding: 50px;
-  width: 40%;
+  width: 50%;
 }
 
-.vs {
+.tandings {
   display: flex;
+  margin-bottom: 5px;
+}
+
+.tanding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  border: 1.5px dashed black;
+  padding: 5px;
+}
+
+.content__vs h4,
+.result h4 {
+  font-size: 20px;
+}
+
+.content__vs {
+  background: #d5d6d2;
+  padding: 10px;
+  padding-top: 2px;
+  width: 90%;
+  border: 5px solid #d5d6d2;
+  /* box-shadow: 0 0 10px #d5d6d2; */
+  border-radius: 5px;
+
+
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+ */
+}
+
+.pilihPlayer {
+  background: #d5d6d2;
+  padding: 10px;
+  width: 90%;
+  border: 5px solid #d5d6d2;
+  /* box-shadow: 0 0 10px #d5d6d2; */
+  border-radius: 30px;
+
+
+
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #d5d6d2;
   padding: 10px;
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
   border: 5px solid #d5d6d2;
-  box-shadow: 0 0 10px #d5d6d2;
+  box-shadow: 0 0 10px #d5d6d2; */
 
 }
 
@@ -61,7 +116,11 @@ img {
   gap: 10px;
 }
 
-
+.pilihPlayer h4 {
+  color: #fd3c3c;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .result {
   background-color: #ff8d3f;
@@ -79,7 +138,6 @@ img {
   flex-direction: row;
   justify-content: center;
   margin-bottom: 5px;
-  margin-top: 5px;
 }
 
 .skor__player, 
@@ -89,8 +147,8 @@ img {
 }
 
 .result__hasil {
-  background-color: #756867;
-  padding: 5px;
+  background-color: #fd3c3c;
+  padding: 2px;
 }
 
 .result__pemenang {
@@ -98,28 +156,86 @@ img {
   padding: 5px;
 }
 
-@media only screen and (max-width: 850px) {
-  .app {
-    padding: 10px;
-  }
-  .app-container {
-    width: 100%;
-    padding: 15px;
-  }
+/* .result__pemenang p {
+  height: 15px;
+} */
 
-  .papanBermain {
-    margin-top: 10px;
+.button__reset {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .content {
+    width: 70%;
   }
 }
 
-@media only screen and (max-width: 425px) {
-  img {
-    width: 75px;
+@media only screen and (max-width: 725px) {
+  .content {
+    width: 80%;
   }
 }
 
-@media only screen and (max-width: 357px) {
-  img {
+@media only screen and (max-width: 600px) {
+  /* img {
     width: 60px;
+  } */
+
+  .content {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .content__vs {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .content__vs h4 {
+    font-size: 16px;
+  }
+
+  .tanding img {
+    width: 80px;
+  }
+
+  .player img {
+    width: 65px;
+  }
+
+  .result h4 {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  /* img {
+    width: 60px;
+  } */
+
+  .content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .content__vs {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .content__vs h4 {
+    font-size: 16px;
+  }
+
+  .tanding img {
+    width: 80px;
+  }
+
+  .player img {
+    width: 65px;
+  }
+
+  .result h4 {
+    font-size: 16px;
   }
 }
