@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import orang from './asets/orang.png';
 import gajah from './asets/gajah.png';
 import semut from './asets/semut.png';
+import swal from '@sweetalert/with-react';
 import { Button } from 'react-bootstrap';
-
 
 function App() {
   const [computer, setComputer] = useState('orang');
@@ -77,15 +77,42 @@ function App() {
     }
   }
 
-  const handlePemenang = () => {
+  // const handlePemenang = () => {
+  //   if(pointPlayer === 5) {
+  //     setPemenang('ANDA MENANG');
+  //   }
+  //   if(pointComputer === 5) {
+  //     setPemenang('ANDA KALAH');
+  //   }
+  //   if(pointComputer === pointPlayer && pointComputer >= 5 && pointPlayer >= 5) {
+  //     setPemenang('SERI')
+  //   }
+  // }
+
+    const handlePemenang = () => {
     if(pointPlayer === 5) {
-      setPemenang('ANDA MENANG');
+      swal(
+        <div>
+          <h1>Selamat kamu MENANG</h1>
+          <p>
+            Coba lagi?
+          </p>
+        </div>
+      );
+      setPointComputer(0);
+      setPointPlayer(0);
     }
     if(pointComputer === 5) {
-      setPemenang('ANDA KALAH');
-    }
-    if(pointComputer === pointPlayer && pointComputer >= 5 && pointPlayer >= 5) {
-      setPemenang('SERI')
+      swal(
+        <div>
+          <h1>Yahhh, kamu KALAH</h1>
+          <p>
+            Coba lagi?
+          </p>
+        </div>
+      );
+      setPointComputer(0);
+      setPointPlayer(0);
     }
   }
 
@@ -106,6 +133,7 @@ function App() {
   useEffect(() => {
     handlePemenang();
   }, [pointComputer, pointPlayer])
+
   
   return (
       <div className="app">
@@ -129,7 +157,7 @@ function App() {
           </div>
 
           <div className="result">
-            <h4>POINT</h4>
+            <h4>POIN</h4>
             <div className="result__skor">
               <div className="skor__player">
                 <h4>KAMU</h4>
@@ -141,7 +169,7 @@ function App() {
               </div>
             </div>
             <div className="result__pemenang">
-              <p>Dapatkan 5 point untuk memenangkan permainan!</p>
+              <p>Dapatkan 5 poin untuk memenangkan permainan!</p>
             </div>
           </div>
           <div className="pilihPlayer" >
