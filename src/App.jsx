@@ -5,6 +5,8 @@ import gajah from './asets/gajah.png';
 import semut from './asets/semut.png';
 import swal from '@sweetalert/with-react';
 import { Button } from 'react-bootstrap';
+import Loading from './components/Loading/Loading';
+import LoadingKeterangan from './components/Loading/LoadingKeterangan';
 
 function App() {
   const [computer, setComputer] = useState('orang');
@@ -16,8 +18,12 @@ function App() {
   const [srcPlayer, setSrcPlayer] = useState(orang);
   const [keterangan, setKeterangan] = useState('');
   const [pemenang, setPemenang] = useState('SIAP MENANG?');
+  const [klik, setKlik] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [loadingKeterangan, setLoadingKeterangan] = useState(false);
 
   const handleComputer = () => {
+    setLoading(true);
     const acak = Math.random();
     let pilih;
     if(acak < 0.34) {
@@ -32,7 +38,11 @@ function App() {
       pilih = 'semut';
       setSrcComp(semut)
     };
-    setComputer(pilih)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+    setComputer(pilih);
+    setKlik(klik+1)
   }
 
   const handleOrang = () => {
@@ -51,51 +61,44 @@ function App() {
   }
 
   const handleResult = () => {
+    setLoadingKeterangan(true);
     let hasil;
     if(computer === player) hasil = 'seri'
     else if(player === 'orang') hasil = (computer === 'semut' ? 'menang' : 'kalah')
     else if(player === 'gajah') hasil = (computer === 'orang' ? 'menang' : 'kalah')
     else if(player === 'semut') hasil = (computer === 'gajah' ? 'menang' : 'kalah');
-    setResult(hasil)
-  }
 
-  const handlePoint = () => {
-    let resComp = pointComputer;
-    resComp++
-    let resPlayer= pointPlayer;
-    resPlayer++
-    if(result === 'kalah') {
-      setPointComputer(resComp);
+    if(hasil === 'kalah') {
+      setTimeout(() => {
+        setLoadingKeterangan(false)
+        setPointComputer(pointComputer+1);
+      }, 2000)
       setKeterangan('KALAH! POIN UNTUK LAWAN');
     }
-    if(result === 'menang') {
-      setPointPlayer(resPlayer);
+    if(hasil === 'menang') {
+      setTimeout(() => {
+        setLoadingKeterangan(false)
+        setPointPlayer(pointPlayer+1);
+      }, 2000)
       setKeterangan('MENANG! POIN UNTUK KAMU');
     }
-    if(result === 'seri') {
+    if(hasil === 'seri') {
+      setTimeout(() => {
+        setLoadingKeterangan(false)
+      }, 2000)
       setKeterangan('SERI! POIN TETAP');
     }
+  setResult(hasil);
+
   }
 
-  // const handlePemenang = () => {
-  //   if(pointPlayer === 5) {
-  //     setPemenang('ANDA MENANG');
-  //   }
-  //   if(pointComputer === 5) {
-  //     setPemenang('ANDA KALAH');
-  //   }
-  //   if(pointComputer === pointPlayer && pointComputer >= 5 && pointPlayer >= 5) {
-  //     setPemenang('SERI')
-  //   }
-  // }
-
-    const handlePemenang = () => {
+  const handlePemenang = () => {
     if(pointPlayer === 5) {
       swal(
         <div>
-          <h1>Selamat kamu MENANG</h1>
+          <h1>Wahhh, selamat kamu MENANG</h1>
           <p>
-            Coba lagi?
+            Lagi?
           </p>
         </div>
       );
@@ -123,18 +126,13 @@ function App() {
   }
 
   useEffect(() => {
-    handleResult();
-  }, [player, computer])
-
-  useEffect(() => {
-    handlePoint();
-  }, [result])
+    handleResult()
+  }, [klik]);
   
   useEffect(() => {
     handlePemenang();
-  }, [pointComputer, pointPlayer])
+  }, [pointComputer, pointPlayer]);
 
-  
   return (
       <div className="app">
         <h1>SUIT JAWA</h1>
@@ -148,11 +146,15 @@ function App() {
               </div>
               <div className="tanding">
                 <h4>COMPUTER</h4>
-                <img src={srcComp} alt="" />
+                {
+                  loading? <Loading /> : <img src={srcComp} alt="" />
+                }
               </div>
             </div>
             <div className="result__hasil">
-              <h4>{keterangan}</h4>
+              {
+                  loadingKeterangan? <LoadingKeterangan /> : <h4>{keterangan}</h4>
+                }
             </div>
           </div>
 
@@ -169,25 +171,25 @@ function App() {
               </div>
             </div>
             <div className="result__pemenang">
-              <p>Dapatkan 5 poin untuk memenangkan permainan!</p>
+              <p>Dapatkan 5 poin untuk menangkan permainan!</p>
             </div>
           </div>
           <div className="pilihPlayer" >
             
             <div className="players__list">
-              <div className="player" onClick={() => {
+              <div className="player player__orang" onClick={() => {
                 handleComputer(); 
                 handleOrang();
                 }}>
                   <img src={orang} alt="" />
                 </div>
-                <div className="player" onClick={() => {
+                <div className="player player__gajah" onClick={() => {
                 handleComputer(); 
                 handleGajah();
                 }}>
                   <img src={gajah} alt="" />
                 </div>
-                <div className="player" onClick={() => {
+                <div className="player player__semut" onClick={() => {
                 handleComputer(); 
                 handleSemut();
                 }}>
@@ -196,7 +198,7 @@ function App() {
             </div>
             <h4>PILIH!</h4>
           </div>
-          <Button className='button__reset' variant='danger' onClick={handleReset}>Reset Poin</Button>
+          <Button onClick={handleReset} className='button__reset' variant='danger'>Reset Poin</Button>
         </div>
       </div>
   );

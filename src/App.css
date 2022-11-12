@@ -116,6 +116,15 @@ img {
   gap: 10px;
 }
 
+.player__orang:hover ,
+.player__gajah:hover ,
+.player__semut:hover {
+  box-shadow: 0 0 25px red;
+  opacity: 70px;
+  border-radius: 50%;
+}
+
+
 .pilihPlayer h4 {
   color: #fd3c3c;
   margin-left: auto;
@@ -147,6 +156,8 @@ img {
 }
 
 .result__hasil {
+  display: flex;
+  justify-content: center;
   background-color: #fd3c3c;
   padding: 2px;
 }
