@@ -11,13 +11,11 @@ import LoadingKeterangan from './components/Loading/LoadingKeterangan';
 function App() {
   const [computer, setComputer] = useState('orang');
   const [player, setPlayer] = useState('orang');
-  const [result, setResult] = useState('');
   const [pointComputer, setPointComputer] = useState(0);
   const [pointPlayer, setPointPlayer] = useState(0);
   const [srcComp, setSrcComp] = useState(orang);
   const [srcPlayer, setSrcPlayer] = useState(orang);
   const [keterangan, setKeterangan] = useState('');
-  const [pemenang, setPemenang] = useState('SIAP MENANG?');
   const [klik, setKlik] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingKeterangan, setLoadingKeterangan] = useState(false);
@@ -88,7 +86,6 @@ function App() {
       }, 2000)
       setKeterangan('SERI! POIN TETAP');
     }
-  setResult(hasil);
   }
 
   const handlePemenang = () => {
@@ -141,15 +138,16 @@ function App() {
   const handleReset = () => {
     setPointComputer(0);
     setPointPlayer(0);
-    setPemenang('SIAP MENANG?')
   }
 
   useEffect(() => {
     handleResult()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [klik]);
   
   useEffect(() => {
     handlePemenang();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pointComputer, pointPlayer]);
 
   // const atur = () => {
