@@ -73,7 +73,7 @@ function App() {
         setLoadingKeterangan(false)
         setPointComputer(pointComputer+1);
       }, 2000)
-      setKeterangan('KALAH! POIN UNTUK LAWAN');
+      setKeterangan('KALAH! POIN UNTUK COMPUTER');
     }
     if(hasil === 'menang') {
       setTimeout(() => {
@@ -89,16 +89,25 @@ function App() {
       setKeterangan('SERI! POIN TETAP');
     }
   setResult(hasil);
-
   }
 
   const handlePemenang = () => {
     if(pointPlayer === 5) {
       swal(
-        <div>
+        <div className='alert__pemenang'>
+          <div className="result__skor pemenang__skor">
+            <div className="skor__player">
+              <h4>KAMU</h4>
+              <h4>{pointPlayer}</h4>
+            </div>
+            <div className="skor__computer">
+              <h4>COMPUTER</h4>
+              <h4>{pointComputer}</h4>
+            </div>
+          </div> <br />
           <h1>Wahhh, selamat kamu MENANG</h1>
           <p>
-            Lagi?
+            Coba lagi?
           </p>
         </div>
       );
@@ -107,7 +116,17 @@ function App() {
     }
     if(pointComputer === 5) {
       swal(
-        <div>
+        <div className='alert__pemenang'>
+          <div className="result__skor pemenang__skor">
+            <div className="skor__player">
+              <h4>KAMU</h4>
+              <h4>{pointPlayer}</h4>
+            </div>
+            <div className="skor__computer">
+              <h4>COMPUTER</h4>
+              <h4>{pointComputer}</h4>
+            </div>
+          </div> <br />
           <h1>Yahhh, kamu KALAH</h1>
           <p>
             Coba lagi?
@@ -132,6 +151,27 @@ function App() {
   useEffect(() => {
     handlePemenang();
   }, [pointComputer, pointPlayer]);
+
+  // const atur = () => {
+  //   swal(
+  //     <div className='alert__pemenang'>
+  //       <div className="result__skor pemenang__skor">
+  //         <div className="skor__player">
+  //           <h4>KAMU</h4>
+  //           <h4>{pointPlayer}</h4>
+  //         </div>
+  //         <div className="skor__computer">
+  //           <h4>COMPUTER</h4>
+  //           <h4>{pointComputer}</h4>
+  //         </div>
+  //       </div> <br />
+  //       <h1>Wahhh, selamat kamu MENANG</h1>
+  //       <p>
+  //         Coba lagi?
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   return (
       <div className="app">
@@ -159,7 +199,7 @@ function App() {
           </div>
 
           <div className="result">
-            <h4>POIN</h4>
+            {/* <h4>POIN</h4> */}
             <div className="result__skor">
               <div className="skor__player">
                 <h4>KAMU</h4>
@@ -199,6 +239,7 @@ function App() {
             <h4>PILIH!</h4>
           </div>
           <Button onClick={handleReset} className='button__reset' variant='danger'>Reset Poin</Button>
+          {/* <Button onClick={atur}>atur</Button> */}
         </div>
       </div>
   );

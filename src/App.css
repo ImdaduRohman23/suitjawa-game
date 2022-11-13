@@ -136,7 +136,7 @@ img {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px;
   box-shadow: 0 0 30px #ff8d3f;
 }
@@ -147,12 +147,17 @@ img {
   flex-direction: row;
   justify-content: center;
   margin-bottom: 5px;
+  border-radius: 5px;
+
 }
 
 .skor__player, 
 .skor__computer {
   width: 50%;
-  border: 1px solid black;
+}
+
+.skor__computer {
+  border-left: 2px solid white;
 }
 
 .result__hasil {
@@ -165,11 +170,20 @@ img {
 .result__pemenang {
   background-color: #fd3c3c;
   padding: 5px;
+  border-radius: 5px;
+
 }
 
-/* .result__pemenang p {
-  height: 15px;
-} */
+.pemenang__skor {
+  background-color: #fd3c3c;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.alert__pemenang {
+  font-size: 1.5rem;
+}
 
 .button__reset {
   margin-top: 20px;
