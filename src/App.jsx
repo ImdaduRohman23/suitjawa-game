@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import { Button } from 'react-bootstrap';
 import Loading from './components/Loading/Loading';
 import LoadingKeterangan from './components/Loading/LoadingKeterangan';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [computer, setComputer] = useState('orang');
@@ -243,6 +244,7 @@ function App() {
           <Button onClick={handleReset} className='button__reset' variant='danger'>Reset Poin</Button>
           {/* <Button onClick={atur}>atur</Button> */}
         </div>
+        <Footer />
       </div>
   );
 }
