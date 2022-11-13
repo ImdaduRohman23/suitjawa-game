@@ -15,6 +15,11 @@ h1 {
   color: #353c3f;
 }
 
+.result__pemenang p,
+.alert__pemenang p {
+  font-family: 'Roboto:wght@300';
+}
+
 /* .app-container {
   background-color: aqua;
   width: 30%;
