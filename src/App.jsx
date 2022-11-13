@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import orang from './asets/orang.png';
 import gajah from './asets/gajah.png';
 import semut from './asets/semut.png';
-import swal from '@sweetalert/with-react';
+import swal from 'sweetalert';
 import { Button } from 'react-bootstrap';
 import Loading from './components/Loading/Loading';
 import LoadingKeterangan from './components/Loading/LoadingKeterangan';
