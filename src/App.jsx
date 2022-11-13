@@ -20,6 +20,7 @@ function App() {
   const [klik, setKlik] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingKeterangan, setLoadingKeterangan] = useState(false);
+  const [level, setLevel] = useState(5);
 
   const handleComputer = () => {
     setLoading(true);
@@ -90,7 +91,7 @@ function App() {
   }
 
   const handlePemenang = () => {
-    if(pointPlayer === 5) {
+    if(pointPlayer === level) {
       // swal(
       //   <div className='alert__pemenang'>
       //     <div className="result__skor pemenang__skor">
@@ -114,7 +115,7 @@ function App() {
       setPointComputer(0);
       setPointPlayer(0);
     }
-    if(pointComputer === 5) {
+    if(pointComputer === level) {
       // swal(
       //   <div className='alert__pemenang'>
       //     <div className="result__skor pemenang__skor">
@@ -138,6 +139,18 @@ function App() {
       setPointComputer(0);
       setPointPlayer(0);
     }
+  }
+
+  const handleLevelMudah = () => {
+    setLevel(5);
+  }
+
+  const handleLevelSedang = () => {
+    setLevel(10);
+  }
+
+  const handleLevelSulit = () => {
+    setLevel(20);
   }
 
   const handleReset = () => {
@@ -202,7 +215,6 @@ function App() {
           </div>
 
           <div className="result">
-            {/* <h4>POIN</h4> */}
             <div className="result__skor">
               <div className="skor__player">
                 <h4>KAMU</h4>
@@ -214,11 +226,10 @@ function App() {
               </div>
             </div>
             <div className="result__pemenang">
-              <p>Dapatkan 5 poin untuk menangkan permainan!</p>
+              <p>Dapatkan {level} poin untuk menangkan permainan!</p>
             </div>
           </div>
           <div className="pilihPlayer" >
-            
             <div className="players__list">
               <div className="player player__orang" onClick={() => {
                 handleComputer(); 
@@ -239,9 +250,15 @@ function App() {
                   <img src={semut} alt="" />
                 </div>
             </div>
-            <h4>PILIH!</h4>
+            <h4>KLIK GAMBAR UNTUK MEMILIH!</h4>
           </div>
-          <Button onClick={handleReset} className='button__reset' variant='danger'>Reset Poin</Button>
+          <div className="levels">
+            <h4>PILIH TINGKAT KESULITAN</h4>
+            <Button onClick={handleLevelMudah}>Mudah</Button>
+            <Button onClick={handleLevelSedang} variant='success'>Sedang</Button>
+            <Button onClick={handleLevelSulit} variant='danger'>Sulit</Button>
+          </div>
+          <Button onClick={handleReset} className='button__reset' variant='warning'>Reset Poin</Button>
           {/* <Button onClick={atur}>atur</Button> */}
         </div>
         <Footer />
