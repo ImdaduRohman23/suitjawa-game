@@ -90,46 +90,50 @@ function App() {
 
   const handlePemenang = () => {
     if(pointPlayer === 5) {
-      swal(
-        <div className='alert__pemenang'>
-          <div className="result__skor pemenang__skor">
-            <div className="skor__player">
-              <h4>KAMU</h4>
-              <h4>{pointPlayer}</h4>
-            </div>
-            <div className="skor__computer">
-              <h4>COMPUTER</h4>
-              <h4>{pointComputer}</h4>
-            </div>
-          </div> <br />
-          <h1>Wahhh, selamat kamu MENANG</h1>
-          <p>
-            Coba lagi?
-          </p>
-        </div>
-      );
+      // swal(
+      //   <div className='alert__pemenang'>
+      //     <div className="result__skor pemenang__skor">
+      //       <div className="skor__player">
+      //         <h4>KAMU</h4>
+      //         <h4>{pointPlayer}</h4>
+      //       </div>
+      //       <div className="skor__computer">
+      //         <h4>COMPUTER</h4>
+      //         <h4>{pointComputer}</h4>
+      //       </div>
+      //     </div> <br />
+      //     <h1>Wahhh, selamat kamu MENANG</h1>
+      //     <p>
+      //       Coba lagi?
+      //     </p>
+      //   </div>
+      // );
+      swal("Wahhh, selamat Kamu MENANG", "Lagi?");
+      
       setPointComputer(0);
       setPointPlayer(0);
     }
     if(pointComputer === 5) {
-      swal(
-        <div className='alert__pemenang'>
-          <div className="result__skor pemenang__skor">
-            <div className="skor__player">
-              <h4>KAMU</h4>
-              <h4>{pointPlayer}</h4>
-            </div>
-            <div className="skor__computer">
-              <h4>COMPUTER</h4>
-              <h4>{pointComputer}</h4>
-            </div>
-          </div> <br />
-          <h1>Yahhh, kamu KALAH</h1>
-          <p>
-            Coba lagi?
-          </p>
-        </div>
-      );
+      // swal(
+      //   <div className='alert__pemenang'>
+      //     <div className="result__skor pemenang__skor">
+      //       <div className="skor__player">
+      //         <h4>KAMU</h4>
+      //         <h4>{pointPlayer}</h4>
+      //       </div>
+      //       <div className="skor__computer">
+      //         <h4>COMPUTER</h4>
+      //         <h4>{pointComputer}</h4>
+      //       </div>
+      //     </div> <br />
+      //     <h1>Yahhh, kamu KALAH</h1>
+      //     <p>
+      //       Coba lagi?
+      //     </p>
+      //   </div>
+      // );
+      swal("Yahhh, Kamu KALAH", "Coba agi?");
+      
       setPointComputer(0);
       setPointPlayer(0);
     }
